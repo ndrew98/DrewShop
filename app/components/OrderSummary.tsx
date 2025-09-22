@@ -1,6 +1,6 @@
-import { addressDummyData } from "../assets/assets";
-import { useAppContext } from "../context/AppContext";
-import { Address } from "../context/types";
+import { addressDummyData } from "../../assets/assets";
+import { useAppContext } from "../../context/AppContext";
+import { Address } from "../../context/types";
 import React, { useEffect, useState } from "react";
 
 const OrderSummary = () => {

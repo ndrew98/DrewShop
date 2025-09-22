@@ -86,3 +86,19 @@ export interface ProductCardProps {
 export interface AppContextProviderProps {
   children: React.ReactNode;
 }
+
+export interface OrderItem {
+  product: Product;
+  quantity: number;
+  _id: string;
+}
+
+export interface Order {
+  _id: string;
+  userId: string;
+  items: OrderItem[];
+  amount: number;
+  address: Address;
+  date: number;
+  __v: number;
+}

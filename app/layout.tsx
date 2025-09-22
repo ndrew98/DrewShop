@@ -1,16 +1,11 @@
 import "@radix-ui/themes/styles.css";
 import type { Metadata } from "next";
-import { Geist, Outfit } from "next/font/google";
+import { Outfit } from "next/font/google";
 import "./globals.css";
-import { Theme, ThemePanel } from "@radix-ui/themes";
+import { Theme } from "@radix-ui/themes";
 import { Toaster } from "react-hot-toast";
 import { ClerkProvider } from "@clerk/nextjs";
-import { AppContextProvider } from "./context/AppContext";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+import { AppContextProvider } from "../context/AppContext";
 
 // const geistMono = Geist_Mono({
 //   variable: "--font-geist-mono",
@@ -32,9 +27,7 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body
-          className={`${outfit.className} ${geistSans.variable} antialiased  text-gray-700`}
-        >
+        <body className={`${outfit.className} antialiased text-gray-800`}>
           <Theme appearance="light">
             <Toaster />
             <div className="mx-auto ">
