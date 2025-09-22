@@ -5,6 +5,7 @@ import "./globals.css";
 import { Theme, ThemePanel } from "@radix-ui/themes";
 import { Toaster } from "react-hot-toast";
 import { ClerkProvider } from "@clerk/nextjs";
+import { AppContextProvider } from "./context/AppContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -36,7 +37,9 @@ export default function RootLayout({
         >
           <Theme appearance="light">
             <Toaster />
-            <div className="mx-auto ">{children}</div>
+            <div className="mx-auto ">
+              <AppContextProvider>{children}</AppContextProvider>
+            </div>
             <ThemePanel />
           </Theme>
         </body>

@@ -1,19 +1,20 @@
 import { addressDummyData } from "../assets/assets";
 import { useAppContext } from "../context/AppContext";
+import { Address } from "../context/types";
 import React, { useEffect, useState } from "react";
 
 const OrderSummary = () => {
   const { currency, router, getCartCount, getCartAmount } = useAppContext();
-  const [selectedAddress, setSelectedAddress] = useState(null);
+  const [selectedAddress, setSelectedAddress] = useState<Address | null>(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-  const [userAddresses, setUserAddresses] = useState([]);
+  const [userAddresses, setUserAddresses] = useState<Address[]>([]);
 
   const fetchUserAddresses = async () => {
     setUserAddresses(addressDummyData);
   };
 
-  const handleAddressSelect = (address) => {
+  const handleAddressSelect = (address: Address) => {
     setSelectedAddress(address);
     setIsDropdownOpen(false);
   };
