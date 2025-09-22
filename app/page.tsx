@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import HeaderSlider from "./components/HeaderSlider";
 import HomeProducts from "./components/HomeProducts";
 import FeaturedProduct from "./components/FeaturedProduct";
+import Banner from "./components/Banner";
 
 const Home = () => {
   return (
@@ -13,7 +14,7 @@ const Home = () => {
         <HeaderSlider />
         <HomeProducts />
         <FeaturedProduct />
-        {/* <Banner /> */}
+        <Banner />
         {/* <NewsLetter /> */}
       </div>
       {/* <Footer /> */}
