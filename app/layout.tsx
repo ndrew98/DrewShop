@@ -1,0 +1,46 @@
+import "@radix-ui/themes/styles.css";
+import type { Metadata } from "next";
+import { Geist, Outfit } from "next/font/google";
+import "./globals.css";
+import { Theme, ThemePanel } from "@radix-ui/themes";
+import { Toaster } from "react-hot-toast";
+import { ClerkProvider } from "@clerk/nextjs";
+
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+// const geistMono = Geist_Mono({
+//   variable: "--font-geist-mono",
+//   subsets: ["latin"],
+// });
+
+const outfit = Outfit({ subsets: ["latin"], weight: ["300", "400", "500"] });
+
+export const metadata: Metadata = {
+  title: "gocart-Andrew",
+  description: "Created by Andrew",
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <ClerkProvider>
+      <html lang="en">
+        <body
+          className={`${outfit.className} ${geistSans.variable} antialiased  text-gray-700`}
+        >
+          <Theme appearance="light">
+            <Toaster />
+            <div className="mx-auto ">{children}</div>
+            <ThemePanel />
+          </Theme>
+        </body>
+      </html>
+    </ClerkProvider>
+  );
+}
