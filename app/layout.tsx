@@ -40,7 +40,7 @@ export default function RootLayout({
             <div className="mx-auto ">
               <AppContextProvider>{children}</AppContextProvider>
             </div>
-            <ThemePanel />
+            {/* <ThemePanel /> */}
           </Theme>
         </body>
       </html>

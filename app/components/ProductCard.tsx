@@ -2,7 +2,7 @@ import React from "react";
 import { assets } from "../assets/assets";
 import Image from "next/image";
 import { useAppContext } from "../context/AppContext";
-import type { ProductCardProps, AppContextType } from "../types";
+import type { ProductCardProps, AppContextType } from "../context/types";
 
 const ProductCard = ({ product }: ProductCardProps) => {
   const { currency, router } = useAppContext() as AppContextType;

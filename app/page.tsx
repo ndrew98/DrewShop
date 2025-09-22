@@ -3,6 +3,7 @@ import React from "react";
 import Navbar from "./components/Navbar";
 import HeaderSlider from "./components/HeaderSlider";
 import HomeProducts from "./components/HomeProducts";
+import FeaturedProduct from "./components/FeaturedProduct";
 
 const Home = () => {
   return (
@@ -11,7 +12,7 @@ const Home = () => {
       <div className="px-6 md:px-16 lg:px-32">
         <HeaderSlider />
         <HomeProducts />
-        {/* <FeaturedProduct /> */}
+        <FeaturedProduct />
         {/* <Banner /> */}
         {/* <NewsLetter /> */}
       </div>
