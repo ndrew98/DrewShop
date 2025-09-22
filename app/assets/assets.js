@@ -341,7 +341,7 @@ export const productsDummyData = [
 
 export const userDummyData = {
   _id: "user_2sZFHS1UIIysJyDVzCpQhUhTIhw",
-  name: "GreatStack",
+  name: "Andrew",
   email: "admin@example.com",
   imageUrl:
     "https://img.clerk.com/eyJ0eXBlIjoiZGVmYXVsdCIsImlpZCI6Imluc18ycnlnUnFiUDBYT2dEZ2h1ZmRXcGlpdWV5OXoiLCJyaWQiOiJ1c2VyXzJzWkZIUzFVSUl5c0p5RFZ6Q3BRaFVoVElodyJ9",

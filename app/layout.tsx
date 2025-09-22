@@ -19,7 +19,7 @@ const geistSans = Geist({
 const outfit = Outfit({ subsets: ["latin"], weight: ["300", "400", "500"] });
 
 export const metadata: Metadata = {
-  title: "gocart-Andrew",
+  title: "DrewShop - Your One-Stop Online Store",
   description: "Created by Andrew",
 };
 
