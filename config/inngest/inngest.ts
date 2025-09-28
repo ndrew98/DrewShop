@@ -5,7 +5,7 @@ import { prisma } from "../../prisma/client";
 export const inngest = new Inngest({ id: "drewstore" });
 
 //Innjest Function to save user data to database
-export const saveUserCreation = inngest.createFunction(
+export const syncUserCreation = inngest.createFunction(
    { id: "sync-user-from-clerk" },
   { event: "clerk/user.created" },
    async ({ event }) => {
@@ -57,5 +57,31 @@ export const syncUserUpdate = inngest.createFunction(
     console.log("User updated in DB:", updatedUser);
 
     return { success: true, user: updatedUser };
+  }
+);
+
+//Inngest function to delete user data from database
+export const syncUserDelete = inngest.createFunction(
+  { id: "delete-user-from-clerk" },
+  { event: "clerk/user.deleted" },
+  async ({ event }) => {
+    const { id } = event.data;
+
+    console.log("User delete event received:", event.data);
+
+    try {
+      const deletedUser = await prisma.user.delete({
+        where: { id },
+      });
+
+      console.log("User deleted from DB:", deletedUser);
+
+      return { success: true, userId: id };
+    } catch (error) {
+      console.error("Error deleting user:", error);
+
+      // In case user doesn’t exist in DB (already deleted)
+      return { success: false, error: "User not found", userId: id };
+    }
   }
 );
