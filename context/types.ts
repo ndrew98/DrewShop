@@ -1,3 +1,11 @@
+import { UserResource } from '@clerk/types';
+
+// interface User {
+//   id: string;
+//   email: string;
+//   name?: string;
+// }
+
 export interface Product {
   _id: string;
   userId: string; // Changed from userid to userId (matches your dummy data)
@@ -49,6 +57,7 @@ export interface Address {
 }
 
 export interface AppContextType {
+  user: UserResource | null;
   // Core properties
   currency: string;
   router: {

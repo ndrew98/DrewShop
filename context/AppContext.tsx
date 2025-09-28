@@ -9,6 +9,7 @@ import type {
   UserData,
   CartItems,
 } from "./types";
+import { useUser } from "@clerk/nextjs";
 
 export const AppContext = createContext<AppContextType | undefined>(undefined);
 
@@ -25,6 +26,9 @@ export const AppContextProvider: React.FC<AppContextProviderProps> = ({
 }) => {
   const currency = process.env.NEXT_PUBLIC_CURRENCY || "$";
   const router = useRouter();
+
+  // Get user information from Clerk
+  const { user } = useUser();
 
   const [products, setProducts] = useState<Product[]>([]);
   const [userData, setUserData] = useState<UserData | false>(false);
@@ -92,6 +96,7 @@ export const AppContextProvider: React.FC<AppContextProviderProps> = ({
   }, []);
 
   const value: AppContextType = {
+    user: user ?? null,
     currency,
     router,
     isSeller,

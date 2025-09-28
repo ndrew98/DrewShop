@@ -2,7 +2,7 @@ import "@radix-ui/themes/styles.css";
 import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
 import "./globals.css";
-import { Theme, ThemePanel } from "@radix-ui/themes";
+import { Theme } from "@radix-ui/themes";
 import { Toaster } from "react-hot-toast";
 import { ClerkProvider } from "@clerk/nextjs";
 import { AppContextProvider } from "../context/AppContext";
@@ -33,7 +33,7 @@ export default function RootLayout({
             <div className="mx-auto ">
               <AppContextProvider>{children}</AppContextProvider>
             </div>
-            <ThemePanel />
+            {/* <ThemePanel /> */}
           </Theme>
         </body>
       </html>
