@@ -1,0 +1,45 @@
+# Generated Prisma files - more specific patterns
+app/generated/**
+app/generated/**/*
+**/generated/prisma/**
+**/generated/**
+
+# Additional Prisma patterns
+**/*prisma**/runtime/**
+**/*prisma**/wasm.js
+**/*prisma**/client.js
+**/*prisma**/default.js
+**/*prisma**/edge.js
+**/*prisma**/index-browser.js
+**/*prisma**/index.js
+**/*prisma**/index.d.ts
+**/*prisma**/query_engine_bg.js
+
+# More comprehensive Prisma exclusions
+./app/generated/prisma/**
+./app/generated/prisma/runtime/**
+app/generated/prisma/runtime/library.js
+app/generated/prisma/runtime/react-native.js
+app/generated/prisma/runtime/wasm-compiler-edge.js
+app/generated/prisma/runtime/wasm-engine-edge.js
+app/generated/prisma/runtime/edge-esm.js
+app/generated/prisma/runtime/edge.js
+app/generated/prisma/runtime/index-browser.js
+
+# Absolute path exclusions for stubborn files
+**/app/generated/prisma/**/*.js
+**/app/generated/prisma/**/*.d.ts
+
+# Node modules
+node_modules/
+
+# Build outputs
+.next/
+out/
+dist/
+
+# Environment files
+.env
+.env.local
+.env.production
+.env.development
