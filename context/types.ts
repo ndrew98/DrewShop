@@ -58,6 +58,7 @@ export interface Address {
 
 export interface AppContextType {
   user: UserResource | null;
+  getToken: (options?: Record<string, unknown>) => Promise<string | null>;
   // Core properties
   currency: string;
   router: {

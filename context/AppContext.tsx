@@ -1,7 +1,13 @@
 "use client";
-import { productsDummyData, userDummyData } from "../assets/assets";
+import { productsDummyData } from "../assets/assets";
 import { useRouter } from "next/navigation";
-import { createContext, useContext, useEffect, useState } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  useCallback,
+} from "react";
 import type {
   AppContextType,
   AppContextProviderProps,
@@ -9,7 +15,9 @@ import type {
   UserData,
   CartItems,
 } from "./types";
-import { useUser } from "@clerk/nextjs";
+import { useAuth, useUser } from "@clerk/nextjs";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 export const AppContext = createContext<AppContextType | undefined>(undefined);
 
@@ -30,18 +38,38 @@ export const AppContextProvider: React.FC<AppContextProviderProps> = ({
   // Get user information from Clerk
   const { user } = useUser();
 
+  //Get Token from Clerk
+  const { getToken } = useAuth();
+
   const [products, setProducts] = useState<Product[]>([]);
   const [userData, setUserData] = useState<UserData | false>(false);
-  const [isSeller, setIsSeller] = useState<boolean>(true);
+  const [isSeller, setIsSeller] = useState<boolean>(false);
   const [cartItems, setCartItems] = useState<CartItems>({});
 
   const fetchProductData = async (): Promise<void> => {
     setProducts(productsDummyData);
   };
 
-  const fetchUserData = async (): Promise<void> => {
-    setUserData(userDummyData);
-  };
+  const fetchUserData = useCallback(async (): Promise<void> => {
+    //condition to check if user is a seller
+    try {
+      if (user && user.publicMetadata.role === "seller") {
+        setIsSeller(true);
+      }
+      const token = await getToken();
+      const { data } = await axios.get("/api/user/data", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      if (data.success) {
+        setUserData(data.user);
+        setCartItems(data.user.cartItems);
+      } else {
+        toast.error(data.message);
+      }
+    } catch {
+      //  toast.error(data.message);
+    }
+  }, [user, getToken]);
 
   const addToCart = async (itemId: string): Promise<void> => {
     const cartData = structuredClone(cartItems);
@@ -92,11 +120,14 @@ export const AppContextProvider: React.FC<AppContextProviderProps> = ({
   }, []);
 
   useEffect(() => {
-    fetchUserData();
-  }, []);
+    if (user) {
+      fetchUserData();
+    }
+  }, [fetchUserData, user]);
 
   const value: AppContextType = {
     user: user ?? null,
+    getToken,
     currency,
     router,
     isSeller,
